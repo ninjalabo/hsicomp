@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "hsicomp"
+  site-url: "https://ninjalabo.github.io/hsicomp"
+  description: "HSI model compression evaluation"
+  repo-branch: main
+  repo-url: "https://github.com/ninjalabo/hsicomp"
