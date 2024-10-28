@@ -1,0 +1,12 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - 001_tracker.ipynb
+      - 002_tracker.ipynb
+      - 003_tracker.ipynb
+      - 004_tracker.ipynb
+      - 005_tracker.ipynb
+      - 006_tracker.ipynb
+      - 00_core.ipynb
+      - 01_hsi_intro.ipynb
