@@ -1,0 +1,37 @@
+HySpecNet-11k
+
+The HySpecNet-11k dataset is constructed by the Remote Sensing Image Analysis (RSiM) group at TU Berlin and the Big Data Analytics in Earth Observation group at the Berlin Institute for the Foundations of Learning and Data (BIFOLD).
+
+# Dataset
+HySpecNet-11k is a large-scale hyperspectral benchmark dataset made up of 11,483 nonoverlapping image patches acquired by the EnMAP satellite. Each patch is a portion of 128 × 128 pixels with 224 spectral bands and with a ground sample distance of 30 m.
+
+ To construct HySpecNet-11k, a total of 250 EnMAP tiles acquired during the routine operation phase between 2 November 2022 and 9 November 2022 were considered. The considered tiles are associated with less than 10% cloud and snow cover. The tiles were radiometrically, geometrically and atmospherically corrected (L2A water & land product). Then, the tiles were divided into nonoverlapping image patches. The cropped patches at the borders of the tiles were eliminated. As a result, more than 45 patches per tile are obtained, resulting in 11,483 patches for the full dataset.
+
+ We provide predefined splits obtained by randomly dividing HySpecNet into:
+  i. a training set that includes 70% of the patches, 
+  ii. a validation set that includes 20% of the patches,
+  iii. a test set that includes 10% of the patches. 
+  
+  Depending on the way that we used for splitting the dataset, we define two different splits: 
+  i. an easy split, where patches from the same tile can be present in different sets (patchwise splitting);
+  ii. a hard split, where all patches from one tile belong to the same set (tilewise splitting).
+
+# Model Architecture
+1D-Convolutional Autoencoder (1D-CAE)
+Encoder
+The encoder compresses the input spectral signature into a low-dimensional representation. The structure consists of:
+
+1D Convolutional Layers: These layers extract local features along the spectral dimension, with each convolutional filter capturing different spectral characteristics. Using multiple filters helps capture diverse spectral features.
+Max Pooling Layers: After each convolution, max pooling downsamples the spectral information, retaining only the most prominent features, contributing to dimensionality reduction.
+Bottleneck Layer: This layer holds the compressed, low-dimensional representation, which is the model's output for the encoding phase. The number of features here determines the compression ratio.
+Decoder
+The decoder reconstructs the compressed data back to the original spectral dimension. It mirrors the encoder, with key differences:
+
+Upsampling Layers: These layers reverse the effect of max pooling by increasing the feature count.
+1D Convolutional Layers: Additional layers reconstruct the compressed features into an approximation of the original data. The final convolutional layer uses a sigmoid activation to ensure values remain between 0 and 1, matching the normalized input data range.
+
+# Evaluation Metrics
+To evaluate the model's performance, two main metrics are used:
+
+Signal-to-Noise Ratio (SNR): Higher SNR indicates a closer match between the original and reconstructed data.
+Spectral Angle Mapper (SAM): Lower SAM values indicate that the reconstructed spectral signatures closely match the angular orientation of the original data, essential for applications like classification.
