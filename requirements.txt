@@ -1,0 +1,7 @@
+numpy==1.26.3
+pytorch_msssim==1.0.0
+pytz==2024.1
+torch
+torchsummary==1.5.1
+torchvision==0.19.1
+tqdm==4.66.5
