@@ -5,4 +5,7 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://ninjalabo.github.io',
                 'git_url': 'https://github.com/ninjalabo/hsicomp',
                 'lib_path': 'hsicomp'},
-  'syms': {'hsicomp.core': {'hsicomp.core.foo': ('core.html#foo', 'hsicomp/core.py')}}}
+  'syms': { 'hsicomp.ARAD1K.setup': {'hsicomp.ARAD1K.setup.foo': ('arad1k_setup.html#foo', 'hsicomp/ARAD1K/setup.py')},
+            'hsicomp.core': {'hsicomp.core.foo': ('hyspecnet11k_quantization.html#foo', 'hsicomp/core.py')},
+            'hsicomp.hyspecnet11k.setup': { 'hsicomp.hyspecnet11k.setup.foo': ( 'hyspecnet11k_setup.html#foo',
+                                                                                'hsicomp/hyspecnet11k/setup.py')}}}
