@@ -1,0 +1,89 @@
+---
+title: "Leveraging Deep Neural Network Compression Techniques for Real-Time Hyperspectral Image Processing in Edge AI"
+
+---
+Authors: Dheeraj Kumar, Leila Mozaffari
+
+## Introduction
+
+### Objective
+To improve hyperspectral image analysis by integrating SSCNet [1] with the FasterAI [4] compression technique, demonstrating efficiency and performance on the HySpecNet-11k dataset. Hyperspectral imaging provides rich spectral information across numerous bands, supporting applications like remote sensing, agriculture, and medical imaging. However, the high volume and computational demands of hyperspectral data necessitate innovative compression and processing techniques.
+
+### Challenges
+
+* Managing large-scale hyperspectral datasets.
+* Balancing reconstruction quality and compression efficiency.
+
+### Contributions
+
+* Integration of SSCNet with FasterAI pruning for compressing HSI compression model. to reduce model size while preserving high-quality image reconstruction.
+* Validated on HySpecNet-11k, a large-scale hyperspectral benchmark dataset.
+* Achieved significant reduction in model size and computational load with minor performance trade-offs.
+
+
+
+
+## Methodology
+
+### Dataset: HySpecNet-11k
+
+HySpecNet-11k [2] is a large-scale hyperspectral dataset containing 11,483 image patches (128×128 pixels with 224 spectral bands) derived from e Environmental Mapping and Analysis Program (EnMAP) satellite data. It is designed for benchmarking learning-based compression and analysis methods.
+
+* Dataset Splits: Training (70%), Validation (20%), Test (10%).
+* Preprocessing: Removed water vapor-affected bands, applied normalization, and used both patchwise and tilewise splits.
+
+
+### Model: Spectral Signals Compressor Network (SSCNet)
+SSCNet [3] uses 2D convolutions to compress spatial dimensions while preserving spectral integrity.
+
+* Encoder: Three 2D convolutional layers with parametric ReLU activation and max-pooling.
+* Decoder: Uses transposed convolutions for reconstruction.
+* Compression Ratio (CR): Defined by latent channels in bottleneck layer.
+
+### FasterAI Pruning Compression Technique
+
+* Remove redundant weights or neurons.
+* Fine-tune to recover performance.
+* Outcome: Smaller, faster model with minimal accuracy loss.
+
+
+
+## Experimental Results
+
+* Metric: Bits-per-pixel per channel (bpppc) vs. Peak Signal-to-Noise Ratio (PSNR).
+* Pruned SSCNet achieved a PSNR of 42.98 dB at 2.53 bpppc.
+* Reduced model size by 45% and computational complexity by 50%.
+
+
+![](./images/Results.png)
+
+
+
+### Comparative Analysis
+
+* Outperformed traditional and learning-based methods in compression efficiency and speed.
+* Visuals demonstrate minimal loss of fidelity in reconstructed hyperspectral images. 
+
+
+
+## Conclusion
+
+* Effective reduction in memory footprint and computational demands for real-time edge AI deployment.
+* Enables practical deployment of hyperspectral models in resource-constrained environments.
+* Supports scalable analysis for large datasets like HySpecNet-11k.
+
+## Future Work
+
+* Test FasterAI compression on additional hyperspectral models.
+* Explore dynamic pruning strategies.
+* Apply other model compression techniques.
+
+## References
+
+* [1]	M. H. P. Fuchs and B. Demir, “Hyspecnet-11k: A large-scale hyperspectral dataset for benchmarking learning-based hyperspectral image compression methods,” in IGARSS 2023-2023 IEEE International Geoscience and Remote Sensing Symposium, IEEE, 2023, pp. 1779–1782.
+* [2]	M. H. P. Fuchs and B. Demir, “HySpecNet-11k: A large-scale hyperspectral benchmark dataset.” Dryad, p. 63608947808 bytes, Jun. 26, 2023. doi: 10.5061/DRYAD.FTTDZ08ZH.
+* [3]	R. La Grassa, C. Re, G. Cremonese, and I. Gallo, “Hyperspectral data compression using fully convolutional autoencoder,” Remote Sensing, vol. 14, no. 10, p. 2472, 2022.
+* [4]	“FasterAI,” fasterai. Available: https://nathanhubens.github.io/fasterai/
+* [5]   Fuchs, M. H. P., & Demir, B. (2023). HySpecNet-11k: A Large-Scale Hyperspectral Dataset for Benchmarking Learning-Based Hyperspectral Image Compression Methods. arXiv preprint arXiv:2306.00385v2.
+
+
