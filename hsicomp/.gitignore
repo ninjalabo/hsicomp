@@ -6,4 +6,4 @@ SSCNet_Static_Quantization.py
 SSCNetPruning.py
 SSCNetStaticQuantization.py
 static_quantization.py
-
+HySpecNet11k_inference.py
