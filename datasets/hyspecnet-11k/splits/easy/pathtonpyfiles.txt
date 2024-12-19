@@ -1,0 +1,1 @@
+This folder has path all the npy files divided into test, train, validate datasets
